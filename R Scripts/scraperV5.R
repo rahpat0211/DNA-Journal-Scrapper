@@ -26,7 +26,7 @@ getFullArticle <- function(html_page){
   
 }
 getKeywords <- function(html_page){
-  
+  return(html_node(page,"div.kwd-group") %>% html_text())
 }
 # DOI
 getDOI <- function(html_page){
