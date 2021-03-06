@@ -38,4 +38,8 @@ getKeywords <- function(html_page) {
   return(keywords)
 }
 
-getKeywords(page)
+# Full Text
+getFullText <- function(html_page) {
+  text <- html_text(html_nodes(html_page, 'h2.section-title,h3.section-title,p.chapter-para, div.block-child-p.js-p-fig-section'))
+  return(text)
+}
