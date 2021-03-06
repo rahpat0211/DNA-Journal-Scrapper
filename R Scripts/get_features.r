@@ -29,7 +29,7 @@ getDOI <- function(html_page){
   raw_text <- html_node(page,"div.ww-citation-primary") %>% html_text()
   vals <- regexpr("https://doi.org/(.*)", raw_text)
   doi_len <- attr(vals, "match.length")
-  return(substr(raw_text,vals[1], vals[1] + doi_len -1))
+  return(gsub("https://doi.org/","",substr(raw_text,vals[1], vals[1] + doi_len -1)))
 }
 
 # Keywords
