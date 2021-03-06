@@ -31,3 +31,11 @@ getDOI <- function(html_page){
   doi_len <- attr(vals, "match.length")
   return(substr(raw_text,vals[1], vals[1] + doi_len -1))
 }
+
+# Keywords
+getKeywords <- function(html_page) {
+  keywords <- html_node(page,"div.kwd-group") %>% html_text()
+  return(keywords)
+}
+
+getKeywords(page)
