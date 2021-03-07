@@ -2,7 +2,7 @@ library(rvest)
 library(stringr)
 # SET WORKING DIRECTORY IN RSTUDIO
 source('scraperV5.R')
-# Need tp convert script into functions
+# Need to convert script into functions
 year <- 2021
 raw_links <- getYearLinks(year)
 LEN <- length(raw_links)
