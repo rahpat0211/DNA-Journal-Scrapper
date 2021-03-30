@@ -40,6 +40,10 @@ extractURL <- function(urls) {
     return(html_node(html_page, "div.citation-date") %>%
              html_text())
   }
+  #Abstract
+  getAbstract <- function(html_page){
+  return(html_page %>% html_nodes(".abstract")%>% html_text())
+  }
   # DOI
   getDOI <- function(html_page){
     raw_text <- html_node(page,"div.ww-citation-primary") %>% html_text()
@@ -71,6 +75,7 @@ extractURL <- function(urls) {
     ogDf[nrow(ogDf),3] <- c(aut)
     ogDf[nrow(ogDf),7] <- c(getPubDate(page))
     ogDf[nrow(ogDf),8] <- c(getKeywords(page))
+    ogDf[nrow(ogDf),9] <- c(getAbstract(page))
     full <- getFullText(page)
     full <- paste(full, collapse = "")
     ogDf[nrow(ogDf),9] <- c(full)
