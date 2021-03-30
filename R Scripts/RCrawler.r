@@ -1,3 +1,4 @@
+
 library(rvest)
 library(stringr)
 
@@ -25,7 +26,7 @@ getYearLinks <- function(year) {
 extractURL <- function(urls) {
   yearALL <- urls
   
-  ogDf <- data.frame(DOI="",Title="",Authors="",Author_Affiliations="NO",Correspondence_Author="NO",Correspondence_Author_Email="NO", Publication_Date="",Keywords="", Full_Text="")
+  ogDf <- data.frame(DOI="",Title="",Authors="",Author_Affiliations="NO",Correspondence_Author="NO",Correspondence_Author_Email="NO", Publication_Date="",Keywords="", Abstract="", Full_Text="")
   
   getTitle <- function(html_page){
     raw_title <- html_node(html_page, "h1.wi-article-title.article-title-main") %>% html_text()
@@ -42,7 +43,7 @@ extractURL <- function(urls) {
   }
   #Abstract
   getAbstract <- function(html_page){
-  return(html_page %>% html_nodes(".abstract")%>% html_text())
+    return(html_page %>% html_nodes(".abstract")%>% html_text())
   }
   # DOI
   getDOI <- function(html_page){
@@ -78,7 +79,7 @@ extractURL <- function(urls) {
     ogDf[nrow(ogDf),9] <- c(getAbstract(page))
     full <- getFullText(page)
     full <- paste(full, collapse = "")
-    ogDf[nrow(ogDf),9] <- c(full)
+    ogDf[nrow(ogDf),10] <- c(full)
     
     
   }
@@ -88,4 +89,4 @@ extractURL <- function(urls) {
   View(ogDf)
 }
 
-getYearLinks(2015)
+getYearLinks(2021)
