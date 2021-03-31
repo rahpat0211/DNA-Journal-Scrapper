@@ -42,7 +42,7 @@ getYearLinks <- function(year) {
       
       # DOI
       getDOI <- function(html_page){
-        raw_text <- html_node(page,"div.ww-citation-primary") %>% html_text()
+        raw_text <- html_node(html_page,"div.ww-citation-primary") %>% html_text()
         vals <- regexpr("https://doi.org/(.*)", raw_text)
         doi_len <- attr(vals, "match.length")
         return(gsub("https://doi.org/","",substr(raw_text,vals[1], vals[1] + doi_len -1)))
