@@ -105,7 +105,8 @@ getYearLinks <- function(year) {
     ogDf[is.na(ogDf)] <- "NO"
     ogDf = ogDf[-1,]
     row.names(ogDf) <- NULL
-    write.csv(ogDf, file = "1994.csv")
+    F_NAME <- paste(year,".csv",sep="")
+    write.csv(ogDf, file = F_NAME)
     
   }
   else {
