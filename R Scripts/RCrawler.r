@@ -1,6 +1,6 @@
 library(rvest)
 library(stringr)
-setwd('C:\\Users\\apont\\Documents\\NJIT\\DNA-Journal-Scrapper-main\\Crawled Webpages')
+# SET CURRENT WORKING DIRECTORY TO your_path\DNA-Journal-Scrapper-main\Crawled Webpages
 getYear <- function(year){
   path <- paste(year, ".csv", sep='')
   if(path %in% list.files()){
