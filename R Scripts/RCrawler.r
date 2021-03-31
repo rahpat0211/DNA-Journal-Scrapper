@@ -11,7 +11,7 @@ getYear <- function(year){
     # Be careful the server will kick you off you run it too many times(More than twice in one hour)
     #getYearLinks(year)
     #return(read.csv(path))
-    print('Needs to be web scraped')
+    print('Needs to be web scraped uncomment getYearLinks(year return (read.csv(path)')
   }
 }
 getYearLinks <- function(year) {
