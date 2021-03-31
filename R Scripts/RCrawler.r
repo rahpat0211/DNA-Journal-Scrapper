@@ -1,4 +1,3 @@
-
 library(rvest)
 library(stringr)
 
@@ -26,7 +25,7 @@ getYearLinks <- function(year) {
 extractURL <- function(urls) {
   yearALL <- urls
   
-  ogDf <- data.frame(DOI="",Title="",Authors="",Author_Affiliations="NO",Correspondence_Author="NO",Correspondence_Author_Email="NO", Publication_Date="",Keywords="", Abstract="", Full_Text="")
+  ogDf <- data.frame(DOI="",Title="",Authors="",Author_Affiliations="NO",Correspondence_Author="NO",Correspondence_Author_Email="NO", Publication_Date="",Keywords="",Abstract="", Full_Text="")
   
   getTitle <- function(html_page){
     raw_title <- html_node(html_page, "h1.wi-article-title.article-title-main") %>% html_text()
@@ -41,10 +40,7 @@ extractURL <- function(urls) {
     return(html_node(html_page, "div.citation-date") %>%
              html_text())
   }
-  #Abstract
-  getAbstract <- function(html_page){
-    return(html_page %>% html_nodes(".abstract")%>% html_text())
-  }
+  
   # DOI
   getDOI <- function(html_page){
     raw_text <- html_node(page,"div.ww-citation-primary") %>% html_text()
@@ -58,6 +54,12 @@ extractURL <- function(urls) {
   getKeywords <- function(html_page) {
     keywords <- html_node(html_page,"div.kwd-group") %>% html_text()
     return(keywords)
+  }
+  
+  #Abstract
+  getAbstract <- function(html_page){
+    abstract <- html_text(html_node(html_page, 'p.chapter-para'))
+    return(abstract)
   }
   
   getFullText <- function(html_page) {
@@ -83,10 +85,11 @@ extractURL <- function(urls) {
     
     
   }
+  
   ogDf[is.na(ogDf)] <- "NO"
   ogDf = ogDf[-1,]
   row.names(ogDf) <- NULL
   View(ogDf)
 }
 
-getYearLinks(2021)
+getYearLinks(2020)
