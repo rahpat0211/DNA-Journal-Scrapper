@@ -1,7 +1,20 @@
 library(rvest)
 library(stringr)
-
+setwd('C:\\Users\\apont\\Documents\\NJIT\\DNA-Journal-Scrapper-main\\Crawled Webpages')
+getYear <- function(year){
+  path <- paste(year, ".csv", sep='')
+  if(path %in% list.files()){
+    return(read.csv(path))
+  }
+  else{
+    #getYearLinks(year)
+    #return((read.csv(path)))
+    print('f')
+  }
+}
 getYearLinks <- function(year) {
+  f_name <- paste(year, ".csv", sep="")
+  
   years <- c(1994:2021)
   pages <- c(1:28)
   if(year %in% years) {
@@ -25,6 +38,7 @@ getYearLinks <- function(year) {
       mainURL <- "https://academic.oup.com/"
       
       yearALL <- subURLs
+      Sys.sleep(60)
       
       getTitle <- function(html_page){
         raw_title <- html_node(html_page, "h1.wi-article-title.article-title-main") %>% html_text()
@@ -81,7 +95,7 @@ getYearLinks <- function(year) {
         full <- getFullText(page)
         full <- paste(full, collapse = "")
         ogDf[nrow(ogDf),10] <- c(full)
-
+        
       }
       
       
@@ -99,4 +113,4 @@ getYearLinks <- function(year) {
 
 
 
-getYearLinks(1994)
+getYear(2012)
