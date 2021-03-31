@@ -38,4 +38,10 @@ getKeywords <- function(html_page) {
   return(keywords)
 }
 
+# Abstract
+  getAbstract <- function(html_page){
+    abstract <- html_text(html_node(html_page, 'p.chapter-para'))
+    return(abstract)
+  }
+
 getKeywords(page)
